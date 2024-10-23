@@ -8,7 +8,7 @@ use std::os::unix::fs::OpenOptionsExt;
 use std::path::PathBuf;
 use std::process::exit;
 use std::time::{Duration, Instant};
-use tracing::{error, info};
+use tracing::{debug, error, info};
 
 fn parse_option<R: std::str::FromStr>(opt: Option<OsString>, flag: &'static str) -> R {
     let opt = match opt {
@@ -170,7 +170,9 @@ Options:
             }
             Ok(_) => match file.read_exact(buffer) {
                 Ok(()) => {
-                    latency.observe(start.elapsed().as_secs_f64());
+                    let duration = start.elapsed().as_secs_f64();
+                    debug!("Latency: {}", duration);
+                    latency.observe(duration);
                 }
                 Err(e) => {
                     error!("Error reading at offset {}: {}", offset, e);
