@@ -38,7 +38,7 @@ fn main() {
 
     let mut args = args_os();
     args.next();
-    let usage = "
+    let usage = "\
 Usage: fs-latency-exporter [options] FILENAME
 Options:
     --interval SECONDS
