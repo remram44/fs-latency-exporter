@@ -1,0 +1,25 @@
+[package]
+name = "fs-latency-exporter"
+version = "0.1.0"
+edition = "2021"
+authors = ["Remi Rampin <remi@rampin.org"]
+description = "Measures read latency from a locally-mounted filesystem, exposes as metric"
+readme = "README.md"
+repository = "https://github.com/remram44/fs-latency-exporter"
+keywords = ["filesystem", "latency", "exporter", "metrics"]
+license = "MIT"
+
+[dependencies]
+pretty_env_logger = "0.5"
+rand = "0.8"
+tracing = { version = "0.1", default-features = false, features = ["log", "std"] }
+
+prometheus = "0.13"
+
+tokio = { version = "1.40", default-features = false, features = ["net", "rt"] }
+warp = { version = "0.3", default-features = false }
+
+[profile.release]
+lto = true
+opt-level = "s"
+codegen-units = 1
