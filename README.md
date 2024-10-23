@@ -7,6 +7,8 @@ It can be used with networked file systems as well, if they are mounted on the l
 
 Reads use direct I/O when available (UNIX), picking a random 4096-byte block in the file.
 
+![Screenshot of a Grafana heatmap panel](screenshot-grafana.png)
+
 Example usage:
 
 ```
